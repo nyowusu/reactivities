@@ -6,6 +6,7 @@ interface IProps {
   selectedActivity: IActivity | undefined;
   closeForm: () => void;
   createOrEdit: (activity: IActivity) => void;
+  submitting: boolean;
 }
 
 const defaultActivity: IActivity = {
@@ -32,6 +33,7 @@ export default function ActivityForm({
   selectedActivity = defaultActivity,
   closeForm,
   createOrEdit,
+  submitting,
 }: IProps) {
   const [activity, setActivity] = useState(selectedActivity);
 
@@ -75,6 +77,7 @@ export default function ActivityForm({
         />
         <Form.Input
           placeholder="Date"
+          type="date"
           value={activity.date}
           name={formFieldNames.date}
           onChange={handleInputChange}
@@ -91,7 +94,13 @@ export default function ActivityForm({
           name={formFieldNames.venue}
           onChange={handleInputChange}
         />
-        <Button floated="right" positive type="submit" content="Submit" />
+        <Button
+          floated="right"
+          positive
+          type="submit"
+          content="Submit"
+          loading={submitting}
+        />
         <Button
           floated="right"
           type="button"

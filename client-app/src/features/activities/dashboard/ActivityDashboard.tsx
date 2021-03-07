@@ -15,6 +15,7 @@ interface IProps {
   openForm: (id: string) => void;
   createOrEdit: (activity: IActivity) => void;
   deleteActivity: (id: string) => void;
+  submitting: boolean;
 }
 
 export default function ActivityDashboard({
@@ -27,6 +28,7 @@ export default function ActivityDashboard({
   openForm,
   createOrEdit,
   deleteActivity,
+  submitting,
 }: IProps) {
   return (
     <Grid>
@@ -35,6 +37,7 @@ export default function ActivityDashboard({
           activities={activities}
           handleSelectActivity={handleSelectActivity}
           deleteActivity={deleteActivity}
+          submitting={submitting}
         />
       </Grid.Column>
       <Grid.Column width="6">
@@ -50,6 +53,7 @@ export default function ActivityDashboard({
             selectedActivity={selectedActivity}
             closeForm={closeForm}
             createOrEdit={createOrEdit}
+            submitting={submitting}
           />
         )}
       </Grid.Column>
